@@ -25,16 +25,16 @@ export const Signin = (props) => {
    
   };
   
-  useEffect(() => {
+/*   useEffect(() => {
      
      if (auth) { 
      
       //props.history.push({pathname:'/perfil', data: id})
        
       } 
-   }, []);
+   }, []); */
 
-  const goTo = id =>  (props.history.push({pathname:'/perfil', data: id, auth:auth}));
+  //const goTo = id =>  (props.history.push({pathname:'/perfil', data: id, auth:auth}));
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -69,7 +69,7 @@ export const Signin = (props) => {
         .then(info => {
                       setId(info.data);  
                       setAuth(true);
-                      props.history.push({pathname:"/perfil", data: info.id, auth:auth})
+                      props.history.push({pathname:"/perfil", data: id, auth:auth})
         
                       })
        };

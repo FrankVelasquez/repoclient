@@ -3,11 +3,11 @@ import {Navegador} from "./Navegador";
 import {register} from './controller'
 
 export const RegisterSpecialties = (props) => {
-  const [id,setId]=useState("")
+  //const [id,setId]=useState("")
   const [service, setService] = useState(false);
   const [lugares, setLugares] = useState([]);
   const [especialidades, setEspecialidades] = useState([]);
-  const [precios, setPrecios] = useState([]); 
+  //const [precios, setPrecios] = useState([]); 
   const [c1, setCampo1]= useState(false);
   const [c2, setCampo2]= useState(false);
   const [c3, setCampo3]= useState(false);
@@ -90,12 +90,12 @@ const handleInputChange = e => {
  
 }
 
-useEffect(() => {
- 
-  if (props.id) {
-    setId(props.id);
-  }
-}, []);
+// useEffect(() => {
+//  setId(props.id);
+//   if (props.id) {
+    
+//   }
+// }, []);
 
 
   const formulario = () => (

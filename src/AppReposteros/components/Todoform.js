@@ -11,7 +11,7 @@ export const Todoform = (props) => {
     nick: "",
     lugares: "",
   });
-  const { _id, nombres, email, phone, state, municipio, nick, lugares } =
+  const { nombres, email, phone, state, municipio } =
     valores;
 
   useEffect(() => {
@@ -26,7 +26,7 @@ export const Todoform = (props) => {
       lugares: props.lugares,
     });
   }, [
-    props._id,
+   
     props.nombres,
     props.email,
     props.phone,
@@ -51,9 +51,9 @@ export const Todoform = (props) => {
   
   };
 
-  const HandleVallue = () => {
-    return props._id ? "Actualizar" : "Guardar";
-  };
+  // const HandleVallue = () => {
+  //   return props._id ? "Actualizar" : "Guardar";
+  // };
 
   const formulario = () => (
     <>
