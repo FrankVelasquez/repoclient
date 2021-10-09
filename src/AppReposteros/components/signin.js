@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {Navegador} from "./Navegador";
 import ls from "local-storage";
 import {login, findById} from './controller'
