@@ -1,4 +1,6 @@
 
+import {uri} from "./dotenv"
+
 export const addSpecialities = async (esp) => {
   const options = {
     method: "POST",
@@ -8,7 +10,7 @@ export const addSpecialities = async (esp) => {
       "Content-Type": "application/json",
     }
   };
-  const url = "https://apppastrys.herokuapp.com/api/pastry";
+  const url =  `${uri}/api/pastry`;
   try {
     const resp = await fetch(url, options);
     const json = await resp.json();
@@ -29,7 +31,7 @@ export const login = async (user) => {
     }
   };
 
-  const url = "https://apppastrys.herokuapp.com/auth/signin/";
+  const url =   `${uri}/auth/signin/`;
   try {
     const resp = await fetch(url, options);
     const json = await resp.json();
@@ -49,7 +51,7 @@ export const findById = async (user) => {
     }
   };
 
-  const url = "https://apppastrys.herokuapp.com/auth/verify/";
+  const url =   `${uri}/auth/verify/`;
   try {
     const resp = await fetch(url, options);
     const json = await resp.json();
@@ -71,7 +73,8 @@ export const register = async (user) => {
     }
   };
 
-  const url = "https://apppastrys.herokuapp.com/auth/signup/"; 
+  const url =  `${uri}/auth/signup/`; 
+  
   try {
     const resp = await fetch(url, options);
     const json = await resp.json();
@@ -83,6 +86,7 @@ export const register = async (user) => {
 }
 
 export const getPastryChefs = async () => {
+  
   const options = {
     
     headers: {
@@ -91,7 +95,7 @@ export const getPastryChefs = async () => {
     }
   };
   
-  const url =  "https://apppastrys.herokuapp.com/api/pastry";
+  const url =    `${uri}/api/pastry`;
   try {
     const resp = await fetch(url, options);
     const json = await resp.json();
@@ -109,7 +113,7 @@ export const getAPastryChefsById = async (value) => {
       "Content-Type": "application/json"}
     };
     
-    const url =  `https://apppastrys.herokuapp.com/api/pastry/${value}`;
+    const url =  `${uri}/api/pastry/${value}`;
     try {
       const resp = await fetch(url, options);
       const json = await resp.json();
@@ -126,7 +130,7 @@ export const getAPastryChefsByTitle = async (value) => {
       "Content-Type": "application/json"}
     };
     
-    const url =  `https://apppastrys.herokuapp.com/api/pastry/find/${value}`;
+    const url =  `${uri}/api/pastry/find/${value}`;
     try {
       const resp = await fetch(url, options);
       const json = await resp.json();
@@ -145,7 +149,7 @@ export const EditSpecialities = async (id, esp) => {
       "Content-Type": "application/json"
     }
   };
-  const url = `https://apppastrys.herokuapp.com/api/pastry/${id}`;
+  const url = `${uri}/api/pastry/${id}`;
   try {
     const resp = await fetch(url, options);
     const json = await resp.json();

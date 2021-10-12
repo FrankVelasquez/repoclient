@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import {Navegador} from "./Navegador";
+import React, { useState} from "react";
+// import {Navegador} from "./Navegador";
 import {register} from './controller'
 
 export const RegisterSpecialties = (props) => {
@@ -233,7 +233,7 @@ const handleInputChange = e => {
 
   return (
     <>
-      <Navegador auth={false}/> 
+     {/*  <Navegador auth={false}/>  */}
       {formulario()}
     </>
   );

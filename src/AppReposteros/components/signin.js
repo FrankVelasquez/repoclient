@@ -1,13 +1,21 @@
-import React, { useState } from "react";
-import {Navegador} from "./Navegador";
+import React, { useContext, useState, useEffect } from "react";
+//import {Navegador} from "./Navegador";
 import ls from "local-storage";
 import {login, findById} from './controller'
+import { Globalcontext } from "./Globalcontext";
+import {useHistory} from "react-router-dom"
 
 export const Signin = (props) => {
   
+
+  const context = useContext(Globalcontext);
+  const {handleChangeAuth, auth} = context; 
+  
+  const history = useHistory();
+
   const [nick, setNick] = useState("");
   const [password, setPassword] = useState("");
-  const [auth, setAuth] = useState(false);
+
   const [msg, setMsg] = useState(""); 
   const [id, setId]= useState(""); 
 
@@ -25,30 +33,32 @@ export const Signin = (props) => {
    
   };
   
-/*   useEffect(() => {
-     
-     if (auth) { 
+  useEffect(() => {
+   
+    // if (auth) { 
      
       //props.history.push({pathname:'/perfil', data: id})
        
-      } 
-   }, []); */
+    //  } 
+   }, []); 
 
   //const goTo = id =>  (props.history.push({pathname:'/perfil', data: id, auth:auth}));
 
   const handleSubmit = e => {
     e.preventDefault();
- 
+   
+  
+
     if (nick === "" || password === "") return setMsg("Sus credenciales no son correctas");
- 
+    
     const user = {nick,password};
- 
+  
     login(user)
       .then(data => { 
         if (data.auth) {
             if (typeof window !== "undefined") {
               ls.set("jwt", JSON.stringify(data.token));
-              setAuth(true);
+              handleChangeAuth(true);;
               
             }
   
@@ -64,15 +74,18 @@ export const Signin = (props) => {
         setPassword("");
       })
       
-      if(auth){
+  if(auth){
         findById(user)
         .then(info => {
                       setId(info.data);  
-                      setAuth(true);
-                      props.history.push({pathname:"/perfil", data: id, auth:auth})
-        
+                      
+                      
+                      //actualizo el auth del Contexto Global y envio al perfil de ese repostero
+                      
+                        history.push({pathname:"/perfil", data: id})
+                         
                       })
-       };
+       }; 
   
   }
    
@@ -116,7 +129,7 @@ export const Signin = (props) => {
             <div className="row mt-2">
                 <button
                   className="btn btn-outline-primary "
-                  onClick={()=> props.history.push("/signup")}
+                  onClick={()=> history.push("/signup")}
                 >
                   Registrarse
                 </button>
@@ -139,7 +152,7 @@ export const Signin = (props) => {
 
   return (
     <>
-      <Navegador auth={auth} />
+     {/*  <Navegador auth={auth} /> */}
        {formulario()} 
      
     </>

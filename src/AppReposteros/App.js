@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import {Navegador} from "./components/Navegador";
+import React, { useState, useEffect, useContext } from "react";
+//import {Navegador} from "./components/Navegador";
 import ls from "local-storage";
 import { Specialties } from "./components/Specialties";
-
+import { Globalcontext } from "./components/Globalcontext";
 import {
   getPastryChefs,
   getAPastryChefsByTitle
@@ -10,11 +10,12 @@ import {
 } from "./components/controller";
 
 const App = (props) => {
+  const {handleRestApi, pastrys} = useContext(Globalcontext);    
   
-  const [reposteros, setReposteros] = useState([]);
-  
-  const [_id, set_id] = useState("");
 
+
+  //const [reposteros, setReposteros] = useState([]);
+  
   const [typeAlert, settypeAlert] = useState("");
 
   const [msg, setMsg] = useState("");
@@ -23,9 +24,9 @@ const App = (props) => {
   
   //mapeo el array de 
   const ViewPastryChes = () => {
-    return reposteros.map((repostero) => (
+    return pastrys.map((repostero) => (
       <Specialties
-        repostero={repostero}
+      repostero={repostero}
         key={repostero._id}
         
       />
@@ -35,10 +36,14 @@ const App = (props) => {
   //consulta todos las tareas registradas en la base de datos
   const consultarApi = () => {
  
-   
-      getPastryChefs()
+      
+     getPastryChefs()
         .then((data) => {
-          setReposteros(data);
+           
+          //actualizo el el Almacen o contexto
+          handleRestApi(data);
+          //setReposteros(pastrys);
+          //console.log("reposteros", reposteros)
           
         })
         .catch((err) => {
@@ -50,7 +55,7 @@ const App = (props) => {
   };
 
 
-  const HandleSearch = (search) => {
+ /*  const HandleSearch = (search) => {
     const token = ls.get("jwt");
     if (!token) {
       props.history.push("/signin");
@@ -66,19 +71,17 @@ const App = (props) => {
           settypeAlert("alert alert-danger mt-2");
         });
     }
-  };
+  }; */
 
-  const onAuth = () => {
-    //setAuth(false);
-  };
 
-  useEffect(() => {
-   const token = ls.get("jwt");
-    if (!token) { 
-      props.history.push("/"); 
+ useEffect(() => {
+   //const token = ls.get("jwt");
+   // if (!token) { 
+   //   props.history.push("/"); 
        consultarApi();
-     } 
-  }, []);
+       
+    // } 
+  }, []); 
 
   const formulario = () => (
     <>
@@ -95,7 +98,6 @@ const App = (props) => {
 
   return (
     <>
-      <Navegador onSearch={HandleSearch}/>
       {formulario()}
     </>
   );

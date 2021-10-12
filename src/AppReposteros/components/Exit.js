@@ -1,14 +1,16 @@
 
-import React, { useEffect } from 'react'
+import React, { useEffect, useContext } from 'react'
 import ls from 'local-storage';
-
+import { Globalcontext } from "./Globalcontext";
+ 
 export const Exit = (props) => {
-    
+  const {handleChangeAuth} = useContext(Globalcontext);    
     useEffect(() => {
         const token = ls.get('jwt');
         if (token){
-          ls.remove("jwt")
-            props.history.push('/');
+          ls.remove("jwt") 
+          handleChangeAuth(false);
+          props.history.push('/');
         }
       
     })

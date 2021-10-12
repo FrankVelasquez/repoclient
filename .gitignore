@@ -8,7 +8,7 @@
 /public/manifest.json
 README.md
 logo.svg
-
+/src/Appreposteros/components/dotenv.js
 # testing
 /coverage
 

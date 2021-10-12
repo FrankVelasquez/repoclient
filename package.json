@@ -1,5 +1,5 @@
 {
-  "name": "AppTask",
+  "name": "repoclient",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

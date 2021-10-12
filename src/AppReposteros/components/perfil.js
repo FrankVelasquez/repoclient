@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Navegador } from "./Navegador";
+//import { Navegador } from "./Navegador";
 import Reposteros from "./viewSpecialties";
 import { Todoform } from "./Todoform";
 import { getAPastryChefsById } from "./controller";
-import ls from "local-storage";
+//import ls from "local-storage";
 
 const Perfil = (props) => {
   
   const [especialidades, setEspecialidades] = useState([]);
-  const [auth, setAuth] = useState(false);
+  /* const [auth, setAuth] = useState(false); */
   const [valores, setState] = useState({
     _id: "",
     nombres: "",
@@ -35,7 +35,7 @@ const Perfil = (props) => {
   
     if (props.location.data) {
       
-      setAuth(props.location.auth)
+      //setAuth(props.location.auth)
       
       getAPastryChefsById(props.location.data)
       .then((data) => {
@@ -54,11 +54,11 @@ const Perfil = (props) => {
       });
     }
     
-    const token = ls.get('jwt');
+   /*  const token = ls.get('jwt');
     if (token){
      setAuth(true) 
 
-    }
+    } */
 
   }, []);
 
@@ -89,7 +89,7 @@ const Perfil = (props) => {
 
   return (
     <>
-      <Navegador auth={auth} id={_id}/>
+ {/*      <Navegador auth={auth} id={_id}/> */}
       {formulario()}
     </>
   );

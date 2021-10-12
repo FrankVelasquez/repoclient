@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {Navegador} from "./Navegador";
+//import {Navegador} from "./Navegador";
 import {register} from './controller'
 
 export const Signup = (props) => {
@@ -9,8 +9,8 @@ export const Signup = (props) => {
     nombres:"",
     email:"",
     phone:"",
-    state:"",
-    municipio:"",
+    state:"Nueva Esparta",
+    municipio:"Antolin del campo",
     nick:"",
     password:""
   });
@@ -23,10 +23,10 @@ export const Signup = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    //if (name === "" || email === "" || password === "") return null;
+    if (nombres === "" || email === "" || password === "" || phone === "" || nick === "" ) return null;
    
     
-      const user={
+    const user={
       nombres,
       email, 
       phone, 
@@ -55,35 +55,8 @@ export const Signup = (props) => {
 const handleInputChange = (e) => {
     const { value, name } = e.target;
     const cad = value.toLowerCase();
-   
-    if (name==="nombre"){
-      setState({ ...valores, nombres: cad })
-    } 
-
-    if (name==="email"){
-      setState({ ...valores, email: cad })
-    }
-
-    if (name==="phone"){
-      setState({ ...valores, phone: cad })
-    }  
-    if (name==="estado"){
-      setState({ ...valores, state: cad })
-    }
-    if (name==="municipios"){
-      setState({ ...valores, municipio: cad })
-    }
-    
-    if (name==="nick"){
-      setState({ ...valores, nick: cad });
-    } 
-    
-    if (name==="password"){
-      setState({ ...valores, password: cad })
-    }
-    
-  
-   
+    setState({...valores, [name]:cad}) 
+   console.log(valores)
 };
   
   const formulario = () => (
@@ -100,7 +73,7 @@ const handleInputChange = (e) => {
               <div className="form-group">
                 <input
                   type="text"
-                  name="nombre"
+                  name="nombres"
                   className="form-control"
                   placeholder="Nombre"
                   value={valores.nombres}
@@ -212,8 +185,7 @@ const handleInputChange = (e) => {
 
   return (
     <>
-      <Navegador /> 
-      {formulario()}
+        {formulario()}
     </>
   );
 };

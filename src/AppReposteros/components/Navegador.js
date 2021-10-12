@@ -1,11 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { NavItem } from "reactstrap";
-import ls from "local-storage";
+//import ls from "local-storage";
+import { Globalcontext } from "./Globalcontext";
 
-export const  Navegador = (props) => {
+const  Navegador = (props) => {
+  
+  const {auth} = useContext(Globalcontext);
+
+  
+  
   const [search, setsearch] = useState("");
-  const [auth, setAuth] = useState(false);
+
   
   const HandleSearch = (e) => {
     e.preventDefault();
@@ -14,12 +20,12 @@ export const  Navegador = (props) => {
   };
 
   const handleInputChange = (e) => {
-    const { value, name } = e.target;
+    const { value} = e.target;
     const cad = value.toLowerCase();
     setsearch(cad);
   };
 
-  useEffect(() => {
+ /*  useEffect(() => {
     
     const token = ls.get("jwt");
 
@@ -28,7 +34,7 @@ export const  Navegador = (props) => {
     }
 
     
-  });
+  }); */
 
   const formulario = () => (
     <>
@@ -73,7 +79,7 @@ export const  Navegador = (props) => {
 
               <NavItem
                 className="nav-link"
-                style={{ display: auth ? true : "none" }}
+               style={{ display: auth ? true : "none" }}
               >
                 <Link className="nav-link" to={`/Exit/${auth}`}>
                   Logout
@@ -107,6 +113,7 @@ export const  Navegador = (props) => {
               />
               <button
                 className="btn btn-outline-primary"
+                
                 type="submit"
                 
               >
@@ -117,12 +124,12 @@ export const  Navegador = (props) => {
                 className="nav-link"
                 style={{ display: auth ? true : "none" }}
               > 
-              <Link className="nav-link text-sm" 
-                    style={{ display: auth ? true : "none" }} 
+                <Link className="nav-link text-sm" 
+                     
                     to={`/config/${props.id}`}>
                   
                   Especialidades
-              </Link>
+                </Link>
               </NavItem>  
 
 
@@ -135,3 +142,4 @@ export const  Navegador = (props) => {
 
   return <>{formulario()}</>;
 };
+export default Navegador;
